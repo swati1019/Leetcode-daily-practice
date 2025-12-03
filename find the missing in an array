@@ -1,0 +1,50 @@
+#include <iostream>
+#include <map>
+using namespace std;
+int main(){
+    int n,n2;
+    cin>>n;
+    vector<int> v;
+    for(int i=0; i<n; i++){
+        int m;
+        cin>>m;
+        v.push_back(m);
+    }
+    for(int i=0; i<=n; i++){
+        if(find(v.begin(), v.end(),i) == v.end()) cout<<i;
+        else continue;
+
+    }
+}
+
+//#without using find function(chatgpt)
+this code is better because iski TC O(n) hai while mere code ki O(n^2) hai because TC of find function is O(n) and you are looping it n times so final TC is O(n^2)
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> v(n);
+    for(int i = 0; i < n; i++) {
+        cin >> v[i];
+    }
+
+    // make a frequency array of size n+1 initialized to 0
+    vector<int> present(n + 1, 0);
+
+    // mark all numbers present in v
+    for(int x : v) {
+        if (x <= n) present[x] = 1;
+    }
+
+    // check which number from 0 to n is missing
+    for(int i = 0; i <= n; i++) {
+        if (present[i] == 0) {
+            cout << i;
+        }
+    }
+}
